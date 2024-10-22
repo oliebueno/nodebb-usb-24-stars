@@ -1,13 +1,28 @@
 {
-	"id": "nodebb-plugin-composer-default",
+	"id": "nodebb-plugin-composer-custom",
 	"url": "https://github.com/NodeBB/nodebb-plugin-composer-default",
 	"library": "library.js",
 	"hooks": [
-		{ "hook": "static:app.load", "method": "init" },
-		{ "hook": "filter:config.get", "method": "appendConfig" },
-		{ "hook": "filter:composer.build", "method": "filterComposerBuild" },
-		{ "hook": "filter:admin.header.build", "method": "addAdminNavigation" },
-		{ "hook": "filter:meta.getLinkTags", "method": "addPrefetchTags" }
+		{
+			"hook": "static:app.load",
+			"method": "init"
+		},
+		{
+			"hook": "filter:config.get",
+			"method": "appendConfig"
+		},
+		{
+			"hook": "filter:composer.build",
+			"method": "filterComposerBuild"
+		},
+		{
+			"hook": "filter:admin.header.build",
+			"method": "addAdminNavigation"
+		},
+		{
+			"hook": "filter:meta.getLinkTags",
+			"method": "addPrefetchTags"
+		}
 	],
 	"scss": [
 		"./static/scss/composer.scss"

@@ -23,6 +23,10 @@ define('composer/categoryList', [
 			privilege: 'topics:create',
 			states: ['watching', 'tracking', 'notwatching', 'ignoring'],
 			onSelect: function (selectedCategory) {
+				// passing the selected category to ../composer.js
+				require(['composer'], function (composer) {
+					composer.setSelectedCategory(selectedCategory);
+				});
 				if (postData.hasOwnProperty('cid')) {
 					changeCategory(postContainer, postData, selectedCategory);
 				}

@@ -27,6 +27,9 @@
 			<!-- IMPORT partials/composer-formatting.tpl -->
 
 			<!-- IMPORT partials/composer-write-preview.tpl -->
+			
+			<div class="course-tag-container d-flex align-items-center text-base">
+			</div>
 
 			{{{ if isTopicOrMain }}}
 			<!-- IMPORT partials/composer-tags.tpl -->

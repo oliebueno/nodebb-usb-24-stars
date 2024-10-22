@@ -74,6 +74,20 @@
 		}
 	}
 
+	// adding styles for the input of course tag
+	#course-tag-input {
+		background-color: var(--bs-light);
+		border: none;
+		color: var(--bs-body-color);
+		padding: 0.3rem;
+		border-radius: 0.25rem;
+		font-size: 1rem;
+
+		&::placeholder {
+			color: var(--bs-secondary);
+		}
+	}
+
 	.tags-container {
 		[component="composer/tag/dropdown"] {
 			.dropdown-menu {

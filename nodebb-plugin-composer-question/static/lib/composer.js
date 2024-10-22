@@ -29,7 +29,31 @@ define('composer', [
 		active: undefined,
 		posts: {},
 		bsEnvironment: undefined,
-		formatting: undefined
+		formatting: undefined,
+		setSelectedCategory: undefined
+	};
+
+	// function that executes when the selected category changes
+	composer.setSelectedCategory = function (selectedCategory) {
+		// if the selected category is Questions & Answers, add a course tag input field
+		if (selectedCategory.cid == 5 && selectedCategory.name == "Questions & Answers") {
+			var courseTagContainer = document.querySelector('.course-tag-container');
+			if (courseTagContainer && !document.getElementById('course-tag-input')) {
+				var inputElement = document.createElement('input');
+				inputElement.id = 'course-tag-input';
+				inputElement.size = 30;
+				inputElement.type = 'text';
+				inputElement.placeholder = 'Enter course tag';
+				courseTagContainer.appendChild(inputElement);
+			} 
+		} else {
+			// if the selected category is not Questions & Answers, remove the course tag input field
+			var courseTagContainer = document.querySelector('.course-tag-container');
+			if (courseTagContainer && document.getElementById('course-tag-input')) {
+				courseTagContainer.removeChild(document.getElementById('course-tag-input'));
+			}
+		}
+
 	};
 
 	$(window).off('resize', onWindowResize).on('resize', onWindowResize);
@@ -515,6 +539,19 @@ define('composer', [
 
 			$(document.body).append(composerTemplate);
 
+			// create the input for course tag if we are in Questions & Answers section
+			if (postData.cid == 5) {
+				var courseTagContainer = document.querySelector('.course-tag-container');
+				if (courseTagContainer && !document.getElementById('course-tag-input')) {
+					var inputElement = document.createElement('input');
+					inputElement.id = 'course-tag-input';
+					inputElement.size = 30;
+					inputElement.type = 'text';
+					inputElement.placeholder = 'Enter course tag';
+					courseTagContainer.appendChild(inputElement);
+				}
+			}
+			
 			var postContainer = $(composerTemplate[0]);
 
 			resize.reposition(postContainer);

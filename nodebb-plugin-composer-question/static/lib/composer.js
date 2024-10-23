@@ -759,6 +759,7 @@ define('composer', [
 				cid: categoryList.getSelectedCid(),
 				tags: tags.getTags(post_uuid),
 				timestamp: scheduler.getTimestamp(),
+				courseTag: document.getElementById('course-tag-input') ? document.getElementById('course-tag-input').value : null,
 			};
 		} else if (action === 'posts.reply') {
 			route = `/topics/${postData.tid}`;

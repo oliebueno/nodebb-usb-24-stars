@@ -1,0 +1,17 @@
+{
+  "name": "nodebb-plugin-questions-and-answers",
+  "version": "1.0.0",
+  "description": "Questions and answers plugin for NodeBB",
+  "main": "library.js",
+  "keywords": [
+    "nodebb",
+    "plugin",
+    "questions",
+    "answers"
+  ],
+  "license": "MIT",
+  "nbbpm": {
+    "compatibility": "^3.0.0"
+  }
+}
+

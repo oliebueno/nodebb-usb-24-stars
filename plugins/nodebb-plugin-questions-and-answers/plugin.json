@@ -1,0 +1,6 @@
+{
+  "id": "nodebb-plugin-questions-and-answers",
+  "url": "nodebb-plugin-question-and-answers",
+  "library": "library.js",
+  "templates": "./templates"
+}

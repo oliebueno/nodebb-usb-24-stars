@@ -30,13 +30,13 @@ define('composer', [
 		posts: {},
 		bsEnvironment: undefined,
 		formatting: undefined,
-		setSelectedCategory: undefined
+		setSelectedCategory: undefined,
 	};
 
 	// function that executes when the selected category changes
 	composer.setSelectedCategory = function (selectedCategory) {
 		// if the selected category is Questions & Answers, add a course tag input field
-		if (selectedCategory.cid == 5 && selectedCategory.name == "Questions & Answers") {
+		if (selectedCategory.cid == 5 && selectedCategory.name == 'Questions & Answers') {
 			var courseTagContainer = document.querySelector('.course-tag-container');
 			if (courseTagContainer && !document.getElementById('course-tag-input')) {
 				var inputElement = document.createElement('input');
@@ -45,7 +45,7 @@ define('composer', [
 				inputElement.type = 'text';
 				inputElement.placeholder = 'Enter course tag';
 				courseTagContainer.appendChild(inputElement);
-			} 
+			}
 		} else {
 			// if the selected category is not Questions & Answers, remove the course tag input field
 			var courseTagContainer = document.querySelector('.course-tag-container');
@@ -53,7 +53,6 @@ define('composer', [
 				courseTagContainer.removeChild(document.getElementById('course-tag-input'));
 			}
 		}
-
 	};
 
 	$(window).off('resize', onWindowResize).on('resize', onWindowResize);
@@ -183,7 +182,6 @@ define('composer', [
 
 		composer.posts[uuid] = post;
 		composer.load(uuid);
-
 	}
 
 	async function composerAlert(post_uuid, message) {
@@ -290,7 +288,6 @@ define('composer', [
 			focusElements(postContainer);
 			preview.render(postContainer);
 		}
-
 	};
 
 	composer.newReply = function (data) {
@@ -551,7 +548,7 @@ define('composer', [
 					courseTagContainer.appendChild(inputElement);
 				}
 			}
-			
+
 			var postContainer = $(composerTemplate[0]);
 
 			resize.reposition(postContainer);
@@ -594,7 +591,6 @@ define('composer', [
 			scrollStop.apply(postContainer.find('.write'));
 			focusElements(postContainer);
 			onShow();
-
 		});
 	}
 

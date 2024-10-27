@@ -33,7 +33,7 @@ module.exports = function (Topics) {
 			lastposttime: 0,
 			postcount: 0,
 			viewcount: 0,
-			courseTag: data.courseTag
+			courseTag: data.courseTag,
 		};
 
 		if (Array.isArray(data.tags) && data.tags.length) {

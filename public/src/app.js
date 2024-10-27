@@ -97,7 +97,6 @@ if (document.readyState === 'loading') {
 		$('body').on('click', '#new_topic', function (e) {
 			e.preventDefault();
 			app.newTopic();
-
 		});
 
 		registerServiceWorker();

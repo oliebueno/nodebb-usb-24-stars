@@ -24,12 +24,6 @@ get:
       schema:
         type: string
       example: 1
-    - name: isQA
-      description: This parameter is optional. For default, its value is false. If the category is Q&A, then it will be true.
-      in: path
-      required: false
-      schema:
-        type: boolean
   responses:
     "200":
       description: ""
@@ -66,6 +60,8 @@ get:
                   isNotWatched:
                     type: boolean
                   isIgnored:
+                    type: boolean
+                  isQA:
                     type: boolean
                   title:
                     type: string

@@ -122,6 +122,19 @@ if (document.readyState === 'loading') {
 		});
 	};
 
+	
+	app.load = function () {
+		$('body').on('click', '#filter_my_questions', function (e) {
+			e.preventDefault();
+			app.filterMyQuestions();
+		});
+
+	};
+
+	app.filterMyQuestions = function () {
+		console.log(app.user.uid);
+	}
+
 	app.require = async function (modules) {
 		const single = !Array.isArray(modules);
 		if (single) {

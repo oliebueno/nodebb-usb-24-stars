@@ -152,18 +152,22 @@ if (document.readyState === 'loading') {
 	
 		if (!questions || questions.length === 0) {
 			// Mensaje si no hay preguntas o si hubo un error
-			questionsContainer.innerHTML = '<div class="alert alert-info" role="alert">No tienes preguntas aún. ¡Empieza a preguntar!</div>';
+			questionsContainer.innerHTML = '<div class="alert alert-info" role="alert">No tienes preguntas aún. ¡Anímate a realizar una pregunta ahora!</div>';
 			return;
 		}
-	
-		const ul = document.createElement('ul'); // Crear una lista para las preguntas
+		
+		// Crear un contenedor para las tarjetas
 		questions.forEach(question => {
-			const li = document.createElement('li'); // Crear un elemento de lista por cada pregunta
-			li.textContent = question.title; // Ajusta esto según la estructura de tus datos
-			ul.appendChild(li); // Agregar el elemento a la lista
-		});
+			const card = document.createElement('div');
+			//card.className = 'question-card'; // Agregar una clase para los estilos
 	
-		questionsContainer.appendChild(ul); // Agregar la lista al contenedor
+			// Contenido de la tarjeta con enlace a la pregunta
+			card.innerHTML = `
+            <h5><a href="/topic/${question.tid}" style="text-decoration: none; color: #007bff;">${question.title}</a></h5>
+            <p style="color: #999; font-size: 0.9em;">Creada el: ${question.timeago}</p>`;
+	
+			questionsContainer.appendChild(card); 
+		});
 	}
 
 	app.require = async function (modules) {

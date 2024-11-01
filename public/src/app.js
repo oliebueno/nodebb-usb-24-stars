@@ -17,6 +17,8 @@ require('./sockets');
 require('./overrides');
 require('./ajaxify');
 
+import { displayUserQuestions } from './questionsDisplay.js'
+
 app = window.app || {};
 
 Object.defineProperty(app, 'isFocused', {
@@ -131,49 +133,9 @@ if (document.readyState === 'loading') {
 		$.get(`/api/user/${app.user.userslug}/topics`, function(data) {
 			displayUserQuestions(data.topics); // Llamar a la función para mostrar las preguntas
 		}).fail(function() {
-			// En caso de error, mostrar el mensaje correspondiente
 			displayUserQuestions([]);
 		});
 	};
-	
-	// Función para mostrar las preguntas o el mensaje correspondiente
-	function displayUserQuestions(questions) {
-		const questionsContainer = document.getElementById('questions-container'); // Obtener el contenedor
-		questionsContainer.style.display = 'block'; // Asegúrate de que el contenedor sea visible
-		questionsContainer.innerHTML = '';
-	
-		if (!questions || questions.length === 0) {
-			// Mensaje si no hay preguntas o si hubo un error
-			questionsContainer.innerHTML = '<div class="alert alert-info" role="alert">No tienes preguntas aún. ¡Anímate a realizar una pregunta ahora!</div>';
-			return;
-		}
-		
-		// Crear un contenedor para las tarjetas
-		questions.forEach(question => {
-			const card = document.createElement('div');
-			
-			// Convertir lastposttimeISO a un objeto Date
-			const lastPostDate = new Date(question.lastposttimeISO);
-
-			// Formatear la fecha y hora a un formato legible
-			const options = { 
-				year: 'numeric', 
-				month: 'long', 
-				day: 'numeric', 
-				hour: '2-digit', 
-				minute: '2-digit', 
-				hour12: true // Cambia a false si prefieres el formato de 24 horas
-			};
-			const formattedDate = lastPostDate.toLocaleString('es-ES', options); // Cambia 'es-ES' por el código de idioma que prefieras
-
-			// Contenido de la tarjeta con enlace a la pregunta
-			card.innerHTML = `
-            <h6><a href="/topic/${question.tid}" style="text-decoration: none; color: #007bff;">${question.title}</a></h6>
-            <p style="color: #999; font-size: 0.9em;">Creada el: ${formattedDate}</p>`;
-	
-			questionsContainer.appendChild(card); 
-		});
-	}
 
 	app.require = async function (modules) {
 		const single = !Array.isArray(modules);

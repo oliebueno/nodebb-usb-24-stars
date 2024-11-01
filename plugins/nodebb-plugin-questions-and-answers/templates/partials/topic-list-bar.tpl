@@ -38,7 +38,7 @@
 			<div class="d-flex gap-1 align-items-center">
 				{{{ if template.category }}}
 					{{{if isQA}}}
-					<button class="btn btn-primary btn-sm text-nowrap" id="filter_my_questions" >Filtrar</button>
+						<button class="btn btn-primary btn-sm text-nowrap" id="filter_my_questions" >Filtrar</button>
 					{{{ end }}}
 					{{{ if privileges.topics:create }}}
 					<a href="{config.relative_path}/compose?cid={cid}" component="category/post" id="new_topic" class="btn btn-primary btn-sm text-nowrap" data-ajaxify="false" role="button">
@@ -56,4 +56,15 @@
 			</div>
 		</div>
 	</nav>
+</div>
+
+<div id="questions-container" style="
+    margin-top: 5px;
+    padding: 15px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    background-color: #f9f9f9;
+	display: none; 
+">
+    <!-- Aquí se mostrarán las preguntas o el mensaje correspondiente -->
 </div>

@@ -99,6 +99,11 @@ if (document.readyState === 'loading') {
 			app.newTopic();
 		});
 
+		$('body').on('click', '#filter_my_questions', function (e) {
+			e.preventDefault();
+			app.filterMyQuestions();
+		});
+
 		registerServiceWorker();
 
 		require([
@@ -122,17 +127,43 @@ if (document.readyState === 'loading') {
 		});
 	};
 
-	
-	app.load = function () {
-		$('body').on('click', '#filter_my_questions', function (e) {
-			e.preventDefault();
-			app.filterMyQuestions();
-		});
-
-	};
-
 	app.filterMyQuestions = function () {
-		console.log(app.user.uid);
+		console.log(app.user.uid); // Mostrar el ID del usuario en la consola
+	
+		// Hacer una solicitud para obtener los temas del usuario
+		$.get(`/api/user/${app.user.userslug}/topics`, function(data) {
+			console.log(data.topics); // Mostrar los temas en la consola
+			displayUserQuestions(data.topics); // Llamar a la función para mostrar las preguntas
+		}).fail(function() {
+			// En caso de error, mostrar el mensaje correspondiente
+			displayUserQuestions([]); // Llamar a la función con un array vacío
+		});
+	};
+	
+	// Función para mostrar las preguntas o el mensaje correspondiente
+	function displayUserQuestions(questions) {
+		const questionsContainer = document.getElementById('questions-container'); // Obtener el contenedor
+	
+		// Mostrar el contenedor al hacer clic
+		questionsContainer.style.display = 'block'; // Asegúrate de que el contenedor sea visible
+	
+		// Limpiar el contenedor antes de mostrar nuevas preguntas
+		questionsContainer.innerHTML = '';
+	
+		if (!questions || questions.length === 0) {
+			// Mensaje si no hay preguntas o si hubo un error
+			questionsContainer.innerHTML = '<div class="alert alert-info" role="alert">No tienes preguntas aún. ¡Empieza a preguntar!</div>';
+			return;
+		}
+	
+		const ul = document.createElement('ul'); // Crear una lista para las preguntas
+		questions.forEach(question => {
+			const li = document.createElement('li'); // Crear un elemento de lista por cada pregunta
+			li.textContent = question.title; // Ajusta esto según la estructura de tus datos
+			ul.appendChild(li); // Agregar el elemento a la lista
+		});
+	
+		questionsContainer.appendChild(ul); // Agregar la lista al contenedor
 	}
 
 	app.require = async function (modules) {

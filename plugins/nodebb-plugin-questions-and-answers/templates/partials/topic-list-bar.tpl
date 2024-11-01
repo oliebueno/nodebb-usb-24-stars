@@ -5,8 +5,16 @@
 				{{{ if template.category }}}
 				<!-- IMPORT partials/category/watch.tpl -->
 				<!-- IMPORT partials/tags/filter-dropdown-left.tpl -->
+				{{{ end }}}
+
+				{{{ if isQA }}}
+                <!-- IMPORT partials/tags/filter-dropdown-left.tpl -->
+                {{{ end }}}
+				
+				{{{ if template.category }}}
 				<!-- IMPORT partials/category/sort.tpl -->
 				{{{ end }}}
+
 				{{{ if (template.popular || template.top)}}}
 				<!-- IMPORT partials/topic-terms.tpl -->
 				{{{ end }}}

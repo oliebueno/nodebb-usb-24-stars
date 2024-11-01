@@ -825,7 +825,7 @@ define('composer', [
 						window.history.back();
 					} else if (submitHookData.redirect &&
 						((ajaxify.data.template.name !== 'topic') ||
-						(ajaxify.data.template.topic && parseInt(postData.tid, 10) !== parseInt(ajaxify.data.tid, 10)))
+							(ajaxify.data.template.topic && parseInt(postData.tid, 10) !== parseInt(ajaxify.data.tid, 10)))
 					) {
 						ajaxify.go('post/' + data.pid);
 					}

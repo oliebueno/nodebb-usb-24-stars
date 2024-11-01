@@ -8,9 +8,9 @@
 				{{{ end }}}
 
 				{{{ if isQA }}}
-                <!-- IMPORT partials/tags/filter-dropdown-left.tpl -->
+                <!-- IMPORT partials/tags/filter-dropdown-left_2.tpl -->
                 {{{ end }}}
-				
+
 				{{{ if template.category }}}
 				<!-- IMPORT partials/category/sort.tpl -->
 				{{{ end }}}

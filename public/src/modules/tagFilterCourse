@@ -1,14 +1,14 @@
 'use strict';
 
-define('tagFilter', ['hooks', 'alerts', 'bootstrap'], function (hooks, alerts, bootstrap) {
-	const tagFilter = {};
+define('tagFilterCourse', ['hooks', 'alerts', 'bootstrap'], function (hooks, alerts, bootstrap) {
+	const tagFilterCourse = {};
 
-	tagFilter.init = function (el, options) {
+	tagFilterCourse.init = function (el, options) {
 		if (!el || !el.length) {
 			return;
 		}
 		options = options || {};
-		options.template = 'partials/tags/filter-dropdown-left';
+		options.template = 'partials/tags/filter-dropdown-left_2';
 
 		hooks.fire('action:tag.filter.options', { el: el, options: options });
 
@@ -191,7 +191,7 @@ define('tagFilter', ['hooks', 'alerts', 'bootstrap'], function (hooks, alerts, b
 			renderButton();
 		}
 		function renderButton(selectedTag) {
-			app.parseAndTranslate('partials/tags/filter-dropdown-content', {
+			app.parseAndTranslate('partials/tags/filter-dropdown-content_2', {
 				selectedTag: selectedTag,
 			}, function (html) {
 				el.find('button').replaceWith($('<div/>').html(html).find('button'));
@@ -199,5 +199,5 @@ define('tagFilter', ['hooks', 'alerts', 'bootstrap'], function (hooks, alerts, b
 		}
 	}
 
-	return tagFilter;
+	return tagFilterCourse;
 });

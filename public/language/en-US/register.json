@@ -9,6 +9,8 @@
     "email-address-placeholder": "Enter Email Address",
     "username": "Username",
     "username-placeholder": "Enter Username",
+    "role": "Role",
+    "role-placeholder": "Enter a role",
     "password": "Password",
     "password-placeholder": "Enter Password",
     "confirm-password": "Confirm Password",

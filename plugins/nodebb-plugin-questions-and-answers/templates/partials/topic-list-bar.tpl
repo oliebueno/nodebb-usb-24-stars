@@ -37,7 +37,9 @@
 
 			<div class="d-flex gap-1 align-items-center">
 				{{{ if template.category }}}
+					{{{if isQA}}}
 					<button class="btn btn-primary btn-sm text-nowrap" id="filter_my_questions" >Filtrar</button>
+					{{{ end }}}
 					{{{ if privileges.topics:create }}}
 					<a href="{config.relative_path}/compose?cid={cid}" component="category/post" id="new_topic" class="btn btn-primary btn-sm text-nowrap" data-ajaxify="false" role="button">
                     {{{if !isQA}}}[[category:new-topic-button]]{{{else}}}New Question{{{end}}}</a>

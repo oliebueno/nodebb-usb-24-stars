@@ -128,26 +128,18 @@ if (document.readyState === 'loading') {
 	};
 
 	app.filterMyQuestions = function () {
-		console.log(app.user.uid); // Mostrar el ID del usuario en la consola
-	
-		// Hacer una solicitud para obtener los temas del usuario
 		$.get(`/api/user/${app.user.userslug}/topics`, function(data) {
-			console.log(data.topics); // Mostrar los temas en la consola
 			displayUserQuestions(data.topics); // Llamar a la función para mostrar las preguntas
 		}).fail(function() {
 			// En caso de error, mostrar el mensaje correspondiente
-			displayUserQuestions([]); // Llamar a la función con un array vacío
+			displayUserQuestions([]);
 		});
 	};
 	
 	// Función para mostrar las preguntas o el mensaje correspondiente
 	function displayUserQuestions(questions) {
 		const questionsContainer = document.getElementById('questions-container'); // Obtener el contenedor
-	
-		// Mostrar el contenedor al hacer clic
 		questionsContainer.style.display = 'block'; // Asegúrate de que el contenedor sea visible
-	
-		// Limpiar el contenedor antes de mostrar nuevas preguntas
 		questionsContainer.innerHTML = '';
 	
 		if (!questions || questions.length === 0) {
@@ -159,12 +151,25 @@ if (document.readyState === 'loading') {
 		// Crear un contenedor para las tarjetas
 		questions.forEach(question => {
 			const card = document.createElement('div');
-			//card.className = 'question-card'; // Agregar una clase para los estilos
-	
+			
+			// Convertir lastposttimeISO a un objeto Date
+			const lastPostDate = new Date(question.lastposttimeISO);
+
+			// Formatear la fecha y hora a un formato legible
+			const options = { 
+				year: 'numeric', 
+				month: 'long', 
+				day: 'numeric', 
+				hour: '2-digit', 
+				minute: '2-digit', 
+				hour12: true // Cambia a false si prefieres el formato de 24 horas
+			};
+			const formattedDate = lastPostDate.toLocaleString('es-ES', options); // Cambia 'es-ES' por el código de idioma que prefieras
+
 			// Contenido de la tarjeta con enlace a la pregunta
 			card.innerHTML = `
-            <h5><a href="/topic/${question.tid}" style="text-decoration: none; color: #007bff;">${question.title}</a></h5>
-            <p style="color: #999; font-size: 0.9em;">Creada el: ${question.timeago}</p>`;
+            <h6><a href="/topic/${question.tid}" style="text-decoration: none; color: #007bff;">${question.title}</a></h6>
+            <p style="color: #999; font-size: 0.9em;">Creada el: ${formattedDate}</p>`;
 	
 			questionsContainer.appendChild(card); 
 		});

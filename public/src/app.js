@@ -17,6 +17,8 @@ require('./sockets');
 require('./overrides');
 require('./ajaxify');
 
+import { displayUserQuestions } from './questionsDisplay.js'
+
 app = window.app || {};
 
 Object.defineProperty(app, 'isFocused', {
@@ -93,36 +95,15 @@ if (document.readyState === 'loading') {
 	};
 	app.handleEarlyClicks();
 
-	// Cambiar el texto del boton "New Topic" a "New Question"
-	// solo cuando estamos en la pagina "Questions & Answers",
-	// se usa MutationObserver para detectar cambios en el DOM
-	const observer = new MutationObserver(function (mutations) {
-		mutations.forEach(function () {
-			// encontrar el boton "New Topic"
-			const button = document.getElementById('new_topic');
-			if (button) {
-				// verificar si estamos en la pag correcta
-				if (window.location.pathname.endsWith('/questions-answers')) {
-					// insertar el texto
-					button.textContent = 'New Question';
-				} else {
-					// si no, se deja igual
-					button.textContent = 'New Topic';
-				}
-			}
-		});
-	});
-
-	// Observar cambios en todo el documento
-	observer.observe(document.body, {
-		childList: true,
-		subtree: true,
-	});
-
 	app.load = function () {
 		$('body').on('click', '#new_topic', function (e) {
 			e.preventDefault();
 			app.newTopic();
+		});
+
+		$('body').on('click', '#filter_my_questions', function (e) {
+			e.preventDefault();
+			app.filterMyQuestions();
 		});
 
 		registerServiceWorker();
@@ -145,6 +126,14 @@ if (document.readyState === 'loading') {
 			hooks.fire('action:app.load');
 			messages.show();
 			appLoaded = true;
+		});
+	};
+
+	app.filterMyQuestions = function () {
+		$.get(`/api/user/${app.user.userslug}/topics`, function(data) {
+			displayUserQuestions(data.topics); // Llamar a la función para mostrar las preguntas
+		}).fail(function() {
+			displayUserQuestions([]);
 		});
 	};
 

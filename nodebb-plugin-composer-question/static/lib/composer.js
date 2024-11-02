@@ -30,30 +30,38 @@ define('composer', [
 		posts: {},
 		bsEnvironment: undefined,
 		formatting: undefined,
-		setSelectedCategory: undefined
+		setSelectedCategory: undefined,
 	};
 
 	// function that executes when the selected category changes
 	composer.setSelectedCategory = function (selectedCategory) {
 		// if the selected category is Questions & Answers, add a course tag input field
-		if (selectedCategory.cid == 5 && selectedCategory.name == "Questions & Answers") {
+		if (selectedCategory.cid === 5 && selectedCategory.name === 'Questions & Answers') {
 			var courseTagContainer = document.querySelector('.course-tag-container');
 			if (courseTagContainer && !document.getElementById('course-tag-input')) {
-				var inputElement = document.createElement('input');
-				inputElement.id = 'course-tag-input';
-				inputElement.size = 30;
-				inputElement.type = 'text';
-				inputElement.placeholder = 'Enter course tag';
-				courseTagContainer.appendChild(inputElement);
-			} 
+				var selectElement = document.createElement('select');
+				selectElement.id = 'course-tag-input';
+
+				// Add option elements with values and labels
+				var option1 = document.createElement('option');
+				option1.value = 'MA-1111';
+				option1.text = 'MA-1111';
+				selectElement.appendChild(option1);
+
+				var option2 = document.createElement('option');
+				option2.value = 'FS-1111';
+				option2.text = 'FS-1111';
+				selectElement.appendChild(option2);
+
+				courseTagContainer.appendChild(selectElement);
+			}
 		} else {
 			// if the selected category is not Questions & Answers, remove the course tag input field
-			var courseTagContainer = document.querySelector('.course-tag-container');
+			courseTagContainer = document.querySelector('.course-tag-container');
 			if (courseTagContainer && document.getElementById('course-tag-input')) {
 				courseTagContainer.removeChild(document.getElementById('course-tag-input'));
 			}
 		}
-
 	};
 
 	$(window).off('resize', onWindowResize).on('resize', onWindowResize);
@@ -113,15 +121,15 @@ define('composer', [
 
 			if (!isMobile && window.location.pathname.startsWith(config.relative_path + '/compose')) {
 				/*
-				 *	If this conditional is met, we're no longer in mobile/tablet
-				 *	resolution but we've somehow managed to have a mobile
-				 *	composer load, so let's go back to the topic
+				 *If this conditional is met, we're no longer in mobile/tablet
+				 *resolution but we've somehow managed to have a mobile
+				 *composer load, so let's go back to the topic
 				 */
 				history.back();
 			} else if (isMobile && !window.location.pathname.startsWith(config.relative_path + '/compose')) {
 				/*
-				 *	In this case, we're in mobile/tablet resolution but the composer
-				 *	that loaded was a regular composer, so let's fix the address bar
+				 *In this case, we're in mobile/tablet resolution but the composer
+				 *that loaded was a regular composer, so let's fix the address bar
 				 */
 				mobileHistoryAppend();
 			}
@@ -183,7 +191,6 @@ define('composer', [
 
 		composer.posts[uuid] = post;
 		composer.load(uuid);
-
 	}
 
 	async function composerAlert(post_uuid, message) {
@@ -290,7 +297,6 @@ define('composer', [
 			focusElements(postContainer);
 			preview.render(postContainer);
 		}
-
 	};
 
 	composer.newReply = function (data) {
@@ -380,7 +386,7 @@ define('composer', [
 
 		postContainer.on('click', '.composer-submit', function (e) {
 			e.preventDefault();
-			e.stopPropagation();	// Other click events bring composer back to active state which is undesired on submit
+			e.stopPropagation(); // Other click events bring composer back to active state which is undesired on submit
 
 			$(this).attr('disabled', true);
 			post(post_uuid);
@@ -506,8 +512,8 @@ define('composer', [
 			submitOptions: [
 				// Add items using `filter:composer.create`, or just add them to the <ul> in DOM
 				// {
-				// 	action: 'foobar',
-				// 	text: 'Text Label',
+				// action: 'foobar',
+				// text: 'Text Label',
 				// }
 			],
 		};
@@ -540,18 +546,27 @@ define('composer', [
 			$(document.body).append(composerTemplate);
 
 			// create the input for course tag if we are in Questions & Answers section
-			if (postData.cid == 5) {
+			if (postData.cid === 5) {
 				var courseTagContainer = document.querySelector('.course-tag-container');
 				if (courseTagContainer && !document.getElementById('course-tag-input')) {
-					var inputElement = document.createElement('input');
-					inputElement.id = 'course-tag-input';
-					inputElement.size = 30;
-					inputElement.type = 'text';
-					inputElement.placeholder = 'Enter course tag';
-					courseTagContainer.appendChild(inputElement);
+					var selectElement = document.createElement('select');
+					selectElement.id = 'course-tag-input';
+
+					// Add option elements with values and labels
+					var option1 = document.createElement('option');
+					option1.value = 'MA-1111';
+					option1.text = 'MA-1111';
+					selectElement.appendChild(option1);
+
+					var option2 = document.createElement('option');
+					option2.value = 'FS-1111';
+					option2.text = 'FS-1111';
+					selectElement.appendChild(option2);
 				}
+
+				courseTagContainer.appendChild(selectElement);
 			}
-			
+
 			var postContainer = $(composerTemplate[0]);
 
 			resize.reposition(postContainer);
@@ -594,7 +609,6 @@ define('composer', [
 			scrollStop.apply(postContainer.find('.write'));
 			focusElements(postContainer);
 			onShow();
-
 		});
 	}
 

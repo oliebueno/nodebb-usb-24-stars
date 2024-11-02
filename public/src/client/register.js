@@ -1,6 +1,6 @@
 'use strict';
 
-const { select } = require("async");
+const { select } = require('async');
 
 
 define('forum/register', [

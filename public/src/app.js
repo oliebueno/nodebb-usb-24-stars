@@ -94,10 +94,10 @@ if (document.readyState === 'loading') {
 	app.handleEarlyClicks();
 
 	// Cambiar el texto del boton "New Topic" a "New Question"
-	// solo cuando estamos en la pagina "Questions & Answers", 
+	// solo cuando estamos en la pagina "Questions & Answers",
 	// se usa MutationObserver para detectar cambios en el DOM
-	const observer = new MutationObserver(function(mutations) {
-		mutations.forEach(function() {
+	const observer = new MutationObserver(function (mutations) {
+		mutations.forEach(function () {
 			// encontrar el boton "New Topic"
 			const button = document.getElementById('new_topic');
 			if (button) {
@@ -116,14 +116,13 @@ if (document.readyState === 'loading') {
 	// Observar cambios en todo el documento
 	observer.observe(document.body, {
 		childList: true,
-		subtree: true
+		subtree: true,
 	});
 
 	app.load = function () {
 		$('body').on('click', '#new_topic', function (e) {
 			e.preventDefault();
 			app.newTopic();
-
 		});
 
 		registerServiceWorker();

@@ -2,7 +2,7 @@
     {{{ if selectedTag }}}
     <span class="d-inline-flex align-items-center gap-1">
         <i class="fa fa-fw fa-tags text-primary"></i>
-        <span class="visible-md-inline visible-lg-inline fw-semibold">{selectedTag.label}</span>
+        <span class="visible-md-inline visible-lg-inline fw-semibold">{{selectedTag.label}}</span>
     </span>
     {{{ else }}}
     <i class="fa fa-fw fa-tags text-primary"></i>
@@ -14,25 +14,62 @@
     <input type="text" class="form-control form-control-sm" placeholder="[[search:type-to-search]]" autocomplete="off">
 </div>
 
-<div class="dropdown-menu p-1">
-    <ul component="tag/filter/list" class="list-unstyled mb-0 text-sm overflow-auto ghost-scrollbar" role="menu" style="max-height: 500px;" role="menu">
-        <li role="presentation" data-tag="">
-            <a class="dropdown-item rounded-1 d-flex align-items-center gap-2" role="menuitem" href="#">
-                <span class="flex-grow-1">[[tags:all-tags]]</span>
-                <i component="tag/select/icon" class="flex-shrink-0 fa fa-fw fa-check {{{if selectedTag }}}invisible{{{ end }}}"></i>
-            </a>
-        </li>
-        {{{ each tagItems }}}
-        <li role="presentation" data-tag="{./valueEscaped}">
-            <a class="dropdown-item rounded-1 d-flex align-items-center gap-2" role="menuitem" href="#">
-                <span component="tag-markup" class="flex-grow-1">
-                    <div class="d-inline-flex align-items-center gap-1">
-                        {./valueEscaped}
-                    </div>
-                </span>
-                <i component="tag/select/icon" class="flex-shrink-0 fa fa-fw fa-check {{{ if !./selected }}}invisible{{{ end }}}"></i>
-            </a>
+<div class="dropdown-menu">
+    <ul id="tag-list" class="list-unstyled mb-0" style="max-height: 300px; overflow-y: auto;">
+        {{{ each tagCourse }}}
+        <li>
+            <a class="dropdown-item" href="#" data-tag="{{./valueEscaped}}">{{./valueEscaped}}</a>
         </li>
         {{{ end }}}
     </ul>
 </div>
+
+
+<script>
+    $(document).ready(function() {
+        // Obtener las etiquetas de la API
+        $.get('/api/category/5', function(data) {
+            if (data.topics && Array.isArray(data.topics)) {
+                const tagCourses = data.topics.map(topic => topic.courseTag).flat();
+				console.log(tagCourses);
+
+				const tagList = $('#tag-list');
+				tagCourses.forEach(function(tag) {
+					const listItem = `
+						<li>
+							<a class="dropdown-item" href="#" data-tag="${tag}">${tag}</a>
+						</li>
+					`;
+					tagList.append(listItem);
+					console.log(listItem);
+				});
+
+                $('#tag-list a').on('click', function(event) {
+                    event.preventDefault();
+                    const selectedTag = $(this).data('tag');
+                    $('#selected-tag').text(selectedTag); // Actualizar el texto del botón
+
+                    $.get(`/api/topics?tag=${selectedTag}`, function(topicsData) {
+                        const topicsList = $('#topics-list');
+                        topicsList.empty(); // Limpiar la lista de tópicos
+
+                        if (topicsData && Array.isArray(topicsData)) {
+                            topicsData.forEach(function(topic) {
+                                const topicItem = `<li>${topic.title}</li>`;
+                                topicsList.append(topicItem);
+                            });
+                        } else {
+                            topicsList.append('<li>No se encontraron tópicos asociados.</li>');
+                        }
+                    }).fail(function(jqXHR, textStatus, errorThrown) {
+                        console.error('Error al obtener los tópicos:', textStatus, errorThrown);
+                    });
+                });
+            } else {
+                console.error('No se encontraron temas en los datos.');
+            }
+        }).fail(function(jqXHR, textStatus, errorThrown) {
+            console.error('Error al hacer la solicitud:', textStatus, errorThrown);
+        });
+    });
+</script>

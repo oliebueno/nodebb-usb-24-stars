@@ -1,3 +1,5 @@
+import { displayUserQuestions } from './questionsDisplay.js';
+
 'use strict';
 
 window.$ = require('jquery');
@@ -16,8 +18,6 @@ Benchpress.setGlobal('config', config);
 require('./sockets');
 require('./overrides');
 require('./ajaxify');
-
-import { displayUserQuestions } from './questionsDisplay.js'
 
 app = window.app || {};
 
@@ -130,9 +130,9 @@ if (document.readyState === 'loading') {
 	};
 
 	app.filterMyQuestions = function () {
-		$.get(`/api/user/${app.user.userslug}/topics`, function(data) {
+		$.get(`/api/user/${app.user.userslug}/topics`, function (data) {
 			displayUserQuestions(data.topics); // Llamar a la función para mostrar las preguntas
-		}).fail(function() {
+		}).fail(function () {
 			displayUserQuestions([]);
 		});
 	};

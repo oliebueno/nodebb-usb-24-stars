@@ -17,6 +17,8 @@ require('./sockets');
 require('./overrides');
 require('./ajaxify');
 
+import { displayUserQuestions } from './questionsDisplay.js'
+
 app = window.app || {};
 
 Object.defineProperty(app, 'isFocused', {
@@ -99,6 +101,11 @@ if (document.readyState === 'loading') {
 			app.newTopic();
 		});
 
+		$('body').on('click', '#filter_my_questions', function (e) {
+			e.preventDefault();
+			app.filterMyQuestions();
+		});
+
 		registerServiceWorker();
 
 		require([
@@ -119,6 +126,14 @@ if (document.readyState === 'loading') {
 			hooks.fire('action:app.load');
 			messages.show();
 			appLoaded = true;
+		});
+	};
+
+	app.filterMyQuestions = function () {
+		$.get(`/api/user/${app.user.userslug}/topics`, function(data) {
+			displayUserQuestions(data.topics); // Llamar a la función para mostrar las preguntas
+		}).fail(function() {
+			displayUserQuestions([]);
 		});
 	};
 

@@ -135,6 +135,7 @@ categoryController.get = async function (req, res, next) {
 	categoryData.selectedTag = tagData.selectedTag;
 	categoryData.selectedTags = tagData.selectedTags;
 	categoryData.sortOptionLabel = `[[topic:${validator.escape(String(sort)).replace(/_/g, '-')}]]`;
+	categoryData.isQA = categoryData.cid === 5;
 
 	if (!meta.config['feeds:disableRSS']) {
 		categoryData.rssFeedUrl = `${url}/category/${categoryData.cid}.rss`;

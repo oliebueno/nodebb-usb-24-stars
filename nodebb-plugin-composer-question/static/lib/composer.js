@@ -39,12 +39,21 @@ define('composer', [
 		if (selectedCategory.cid == 5 && selectedCategory.name == "Questions & Answers") {
 			var courseTagContainer = document.querySelector('.course-tag-container');
 			if (courseTagContainer && !document.getElementById('course-tag-input')) {
-				var inputElement = document.createElement('input');
-				inputElement.id = 'course-tag-input';
-				inputElement.size = 30;
-				inputElement.type = 'text';
-				inputElement.placeholder = 'Enter course tag';
-				courseTagContainer.appendChild(inputElement);
+				var selectElement = document.createElement('select');
+				selectElement.id = 'course-tag-input';
+
+				// Add option elements with values and labels
+				var option1 = document.createElement('option');
+				option1.value = 'MA-1111';
+				option1.text = 'MA-1111';
+				selectElement.appendChild(option1);
+
+				var option2 = document.createElement('option');
+				option2.value = 'FS-1111';
+				option2.text = 'FS-1111';
+				selectElement.appendChild(option2);
+
+				courseTagContainer.appendChild(selectElement);
 			} 
 		} else {
 			// if the selected category is not Questions & Answers, remove the course tag input field
@@ -543,13 +552,22 @@ define('composer', [
 			if (postData.cid == 5) {
 				var courseTagContainer = document.querySelector('.course-tag-container');
 				if (courseTagContainer && !document.getElementById('course-tag-input')) {
-					var inputElement = document.createElement('input');
-					inputElement.id = 'course-tag-input';
-					inputElement.size = 30;
-					inputElement.type = 'text';
-					inputElement.placeholder = 'Enter course tag';
-					courseTagContainer.appendChild(inputElement);
+					var selectElement = document.createElement('select');
+				selectElement.id = 'course-tag-input';
+
+				// Add option elements with values and labels
+				var option1 = document.createElement('option');
+				option1.value = 'MA-1111';
+				option1.text = 'MA-1111';
+				selectElement.appendChild(option1);
+
+				var option2 = document.createElement('option');
+				option2.value = 'FS-1111';
+				option2.text = 'FS-1111';
+				selectElement.appendChild(option2);
 				}
+
+				courseTagContainer.appendChild(selectElement);
 			}
 			
 			var postContainer = $(composerTemplate[0]);

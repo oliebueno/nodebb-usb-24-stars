@@ -37,6 +37,9 @@
 
 			<div class="d-flex gap-1 align-items-center">
 				{{{ if template.category }}}
+					{{{if isQA}}}
+						<button class="btn btn-primary btn-sm text-nowrap" id="filter_my_questions" >My Questions</button>
+					{{{ end }}}
 					{{{ if privileges.topics:create }}}
 					<a href="{config.relative_path}/compose?cid={cid}" component="category/post" id="new_topic" class="btn btn-primary btn-sm text-nowrap" data-ajaxify="false" role="button">
                     {{{if !isQA}}}[[category:new-topic-button]]{{{else}}}New Question{{{end}}}</a>
@@ -53,4 +56,18 @@
 			</div>
 		</div>
 	</nav>
+</div>
+
+<div id="questions-container" style="
+    margin-top: 5px;
+    padding: 15px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    background-color: #f9f9f9;
+    display: none; /* Ocultar inicialmente */
+">
+    <!-- Mensaje si no hay preguntas -->
+    <div class="alert alert-info" role="alert" style="display: none;">No tienes preguntas aún. ¡Anímate a realizar una pregunta ahora!</div>
+
+    <!-- Aquí se agregarán dinámicamente más tarjetas de preguntas -->
 </div>

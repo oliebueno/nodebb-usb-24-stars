@@ -1,5 +1,4 @@
 export default function displayUserQuestions(questions) {
-	
 	const questionsContainer = document.getElementById('questions-container');
 	questionsContainer.style.display = 'block';
 	questionsContainer.innerHTML = '';
@@ -32,5 +31,6 @@ export default function displayUserQuestions(questions) {
 		<p style="color: #999; font-size: 0.9em;">Creada el: ${formattedDate}</p>`;
 
 		questionsContainer.appendChild(card);
+		
 	});
 }

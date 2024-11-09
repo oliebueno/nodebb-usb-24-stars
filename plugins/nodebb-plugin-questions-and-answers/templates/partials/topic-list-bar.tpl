@@ -66,8 +66,5 @@
     background-color: #f9f9f9;
     display: none; /* Ocultar inicialmente */
 ">
-    <!-- Mensaje si no hay preguntas -->
-    <div class="alert alert-info" role="alert" style="display: none;">No tienes preguntas aún. ¡Anímate a realizar una pregunta ahora!</div>
-
     <!-- Aquí se agregarán dinámicamente más tarjetas de preguntas -->
 </div>

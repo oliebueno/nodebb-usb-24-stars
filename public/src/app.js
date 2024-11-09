@@ -1,6 +1,6 @@
 'use strict';
 
-import { displayUserQuestions } from './questionsDisplay';
+import displayUserQuestions from './questionsDisplay';
 
 window.$ = require('jquery');
 
@@ -131,20 +131,11 @@ if (document.readyState === 'loading') {
 	};
 
 	app.filterMyQuestions = function () {
-		if (app.user && app.user.userslug) {
-			$.get(`/api/user/${app.user.userslug}/topics`, function (data) {
-				if (data && data.topics) {
-					displayUserQuestions(data.topics);
-				} else {
-					displayUserQuestions([]);
-				}
-			}).fail(function () {
-				displayUserQuestions([]);
-			});
-		} else {
-			console.error('El usuario o su slug no están definidos.');
+		$.get(`/api/user/${app.user.userslug}/topics`, function (data) {
+			displayUserQuestions(data.topics); // Llamar a la función para mostrar las preguntas
+		}).fail(function () {
 			displayUserQuestions([]);
-		}
+		});
 	};
 
 	app.require = async function (modules) {

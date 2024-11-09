@@ -1,4 +1,3 @@
-// Función para mostrar las preguntas o el mensaje correspondiente
 export default function displayUserQuestions(questions) {
 	
 	const questionsContainer = document.getElementById('questions-container');

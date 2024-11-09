@@ -1,5 +1,6 @@
 // Función para mostrar las preguntas o el mensaje correspondiente
 export default function displayUserQuestions(questions) {
+	
 	const questionsContainer = document.getElementById('questions-container');
 	questionsContainer.style.display = 'block';
 	questionsContainer.innerHTML = '';
@@ -11,6 +12,7 @@ export default function displayUserQuestions(questions) {
 	}
 
 	questions.forEach((question) => {
+		
 		const card = document.createElement('div');
 
 		// Convertir lastposttimeISO a un objeto Date

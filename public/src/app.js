@@ -2,6 +2,8 @@ import { displayUserQuestions } from './questionsDisplay.js';
 
 'use strict';
 
+import displayUserQuestions from './questionsDisplay';
+
 window.$ = require('jquery');
 
 window.jQuery = window.$;
@@ -18,6 +20,7 @@ Benchpress.setGlobal('config', config);
 require('./sockets');
 require('./overrides');
 require('./ajaxify');
+
 
 app = window.app || {};
 

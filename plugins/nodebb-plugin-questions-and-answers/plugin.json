@@ -1,9 +1,19 @@
 {
 	"id": "nodebb-plugin-questions-and-answers",
 	"url": "nodebb-plugin-question-and-answers",
-	"library": "./library.js",
+	"library": "library.js",
+	"hooks": [
+		{
+			"hook": "static:app.load",
+			"method": "init"
+		},
+		{
+			"hook": "static:api.routes",
+			"method": "addApiRoute"
+		}
+	],
 	"scripts": [
-		"public/js/client.js"
+		"./static/lib/officialAnswer.js, public/js/client.js"
 	],
 	"templates": "./templates"
 }

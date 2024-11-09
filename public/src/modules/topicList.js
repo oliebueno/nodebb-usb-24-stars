@@ -175,7 +175,7 @@ define('topicList', [
 	}
 
 	function loadTopicsAfter(after, direction, callback) {
-		callback = callback || function () {};
+		callback = callback || function () { };
 		const query = utils.params();
 		query.page = calculateNextPage(after, direction);
 		infinitescroll.loadMoreXhr(query, callback);

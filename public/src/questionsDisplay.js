@@ -1,5 +1,6 @@
 // Función para mostrar las preguntas o el mensaje correspondiente
 export default function displayUserQuestions(questions) {
+
 	const questionsContainer = document.getElementById('questions-container');
 	questionsContainer.style.display = 'block';
 	questionsContainer.innerHTML = '';
@@ -29,7 +30,7 @@ export default function displayUserQuestions(questions) {
 		card.innerHTML = `
 		<h6><a href="/topic/${question.tid}" style="text-decoration: none; color: #007bff;">${question.title}</a></h6>
 		<p style="color: #999; font-size: 0.9em;">Creada el: ${formattedDate}</p>`;
-
+    
 		questionsContainer.appendChild(card);
 	});
 }

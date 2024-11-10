@@ -34,12 +34,14 @@
 					<i class="fa fa-fw fa-arrow-up"></i> [[recent:load-new-posts]]
 				</a>
 			</div>
-			{{{if isQA}}}
-				<form id="search-form" action="/search" method="get">
-					<input type="text" id="search-input" name="q" placeholder="Buscar..." />
-					<button type="submit">Buscar</button>
-				</form>
-			{{{ end }}}
+			<div style="display: flex; justify-content: center; align-items: center;">
+				{{{if isQA}}}
+					<form id="search-form" action="/search" method="get">
+						<input type="text" id="search-input" name="q" placeholder="Buscar..." />
+						<button type="submit">Buscar</button>
+					</form>
+				{{{ end }}}
+			</di>
 			<div class="d-flex gap-1 align-items-center">
 				{{{ if template.category }}}
 					{{{if isQA}}}

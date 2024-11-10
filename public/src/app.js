@@ -128,7 +128,12 @@ if (document.readyState === 'loading') {
 			messages.show();
 			appLoaded = true;
 		});
-
+		
+		// Manejo del formulario de búsqueda
+		$('body').on('submit', '#search-form', function(e) {
+			e.preventDefault(); // Evitar el envío del formulario
+			app.searchTopics(); // Llamar a la función de búsqueda
+		});
 		
 	};
 
@@ -139,6 +144,64 @@ if (document.readyState === 'loading') {
 			displayUserQuestions([]);
 		});
 	};
+
+	app.searchTopics = function () {
+		const query = $('#search-input').val().toLowerCase(); // Obtener el valor del input de búsqueda y convertirlo a minúsculas
+		const categoryId = 5; // ID de la categoría específica
+	
+		if (query.length > 0) {
+			$.get(`/api/category/${categoryId}`, function (data) {
+				const topics = data.topics;
+				const matchingTopics = topics.filter(topic => topic.title.toLowerCase().includes(query));
+				displaySearchResults(matchingTopics); // Llamar a la función para mostrar los resultados
+			}).fail(function (error) {
+				console.error('Error al obtener los temas:', error);
+				displaySearchResults([]); // Si falla, mostrar resultados vacíos
+			});
+		} else {
+			displaySearchResults([]); // Si no hay consulta, mostrar resultados vacíos
+		}
+	};
+	
+
+	app.searchTopics2 = function () {
+		const query = $('#search-input').val(); // Obtener el valor del input de búsqueda
+		const categoryId = 5; // ID de la categoría específica
+		
+		
+		if (query.length > 0) {
+			$.get(`/api/search`, {
+				term: query,
+				in: 'titlesposts',
+				categories: [categoryId],
+				searchChildren: true // Incluir subcategorías si es necesario
+			}, function (data) {
+				console.log(data);
+				displaySearchResults(data.posts); // Llamar a la función para mostrar los resultados
+			}).fail(function () {
+				displaySearchResults([]); // Si falla, mostrar resultados vacíos
+			});
+		} else {
+			displaySearchResults([]); // Si no hay consulta, mostrar resultados vacíos
+		}
+	};
+	
+	// Función para mostrar los resultados de búsqueda
+	function displaySearchResults(posts) {
+		const resultsContainer = $('#search-results');
+		resultsContainer.empty(); // Limpiar resultados anteriores
+	
+		if (posts.length > 0) {
+			posts.forEach(function(post) {
+				const topicElement = `<div>
+					<a href="/topic/${post.tid}">${post.title}</a>
+				</div>`;
+				resultsContainer.append(topicElement);
+			});
+		} else {
+			resultsContainer.append('<div>No se encontraron resultados.</div>');
+		}
+	}
 
 	app.require = async function (modules) {
 		const single = !Array.isArray(modules);

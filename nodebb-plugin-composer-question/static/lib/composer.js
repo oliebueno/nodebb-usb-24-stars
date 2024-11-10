@@ -941,7 +941,7 @@ define('composer', [
 	$(document).on('input', '[data-component="composer/title"] input', function () {
 		var title = $(this).val();
 		if (title.length > 3) { 
-			getSimilarQuestions.getValInput(title);
+			getSimilarQuestions.fetchSimilarQuestions(title);
 		}
 	});
 

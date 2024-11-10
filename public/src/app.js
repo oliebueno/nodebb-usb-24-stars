@@ -19,7 +19,6 @@ require('./sockets');
 require('./overrides');
 require('./ajaxify');
 
-
 app = window.app || {};
 
 Object.defineProperty(app, 'isFocused', {

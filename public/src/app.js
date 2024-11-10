@@ -19,6 +19,7 @@ require('./sockets');
 require('./overrides');
 require('./ajaxify');
 
+
 app = window.app || {};
 
 Object.defineProperty(app, 'isFocused', {
@@ -127,6 +128,8 @@ if (document.readyState === 'loading') {
 			messages.show();
 			appLoaded = true;
 		});
+
+		
 	};
 
 	app.filterMyQuestions = function () {

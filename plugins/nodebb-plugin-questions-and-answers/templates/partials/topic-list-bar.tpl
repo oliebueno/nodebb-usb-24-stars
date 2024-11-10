@@ -34,7 +34,13 @@
 					<i class="fa fa-fw fa-arrow-up"></i> [[recent:load-new-posts]]
 				</a>
 			</div>
+			
 
+			<form id="search-form" action="/search" method="get">
+				<input type="text" id="search-input" name="q" placeholder="Buscar..." />
+				<button type="submit">Buscar</button>
+			</form>
+			
 			<div class="d-flex gap-1 align-items-center">
 				{{{ if template.category }}}
 					{{{if isQA}}}
@@ -57,7 +63,7 @@
 		</div>
 	</nav>
 </div>
-
+<div id="search-results"></div>
 <div id="questions-container" style="
     margin-top: 5px;
     padding: 15px;

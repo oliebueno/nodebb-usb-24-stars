@@ -938,17 +938,16 @@ define('composer', [
 		}
 	};
 
-	// busqueda y visualizacion de preguntas similares dado el input del titulo de la pregunta 
+	// busqueda y visualizacion de preguntas similares dado el input del titulo de la pregunta
 	// que se esta escribiendo
 	$(document).on('input', '[data-component="composer/title"] input', async function () {
 		var title = $(this).val();
-		if (title.length > 3) { 
+		if (title.length > 3) {
 			// obtener las preguntas similares
 			getSimilarQuestions.fetchSimilarQuestions(title).then(function (results) {
 				if (results.length > 0) {
 					// mostrar la lista de preguntas similares
 					$('.similar-questions-list').show();
-				
 					// mostrar los resultados dentro del div con class = similar-questions-list
 					var similarQuestionsList = $('.similar-questions-list');
 					// limpiar la lista de preguntas similares
@@ -962,16 +961,11 @@ define('composer', [
 						similarQuestionsList.append(questionItem);
 					});
 				}
-			}).catch(function (error) {
-				// hubo un error al obtener las preguntas similares
-				console.error(error);
 			});
-			
 		} else {
 			// si el titulo es muy corto, ocultar la lista de preguntas similares
 			$('.similar-questions-list').hide();
 		}
-
 	});
 
 	return composer;

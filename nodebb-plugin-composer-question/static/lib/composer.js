@@ -13,6 +13,7 @@ define('composer', [
 	'composer/autocomplete',
 	'composer/scheduler',
 	'composer/post-queue',
+	'composer/getSimilarQuestions',
 	'scrollStop',
 	'topicThumbs',
 	'api',
@@ -23,7 +24,7 @@ define('composer', [
 	'search',
 	'screenfull',
 ], function (taskbar, translator, uploads, formatting, drafts, tags,
-	categoryList, preview, resize, autocomplete, scheduler, postQueue, scrollStop,
+	categoryList, preview, resize, autocomplete, scheduler, postQueue, getSimilarQuestions, scrollStop,
 	topicThumbs, api, bootbox, alerts, hooks, messagesModule, search, screenfull) {
 	var composer = {
 		active: undefined,
@@ -936,6 +937,13 @@ define('composer', [
 			});
 		}
 	};
+
+	$(document).on('input', '[data-component="composer/title"] input', function () {
+		var title = $(this).val();
+		if (title.length > 3) { 
+			getSimilarQuestions.getValInput(title);
+		}
+	});
 
 	return composer;
 });

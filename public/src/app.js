@@ -163,29 +163,6 @@ if (document.readyState === 'loading') {
 		}
 	};
 	
-
-	app.searchTopics2 = function () {
-		const query = $('#search-input').val(); // Obtener el valor del input de búsqueda
-		const categoryId = 5; // ID de la categoría específica
-		
-		
-		if (query.length > 0) {
-			$.get(`/api/search`, {
-				term: query,
-				in: 'titlesposts',
-				categories: [categoryId],
-				searchChildren: true // Incluir subcategorías si es necesario
-			}, function (data) {
-				console.log(data);
-				displaySearchResults(data.posts); // Llamar a la función para mostrar los resultados
-			}).fail(function () {
-				displaySearchResults([]); // Si falla, mostrar resultados vacíos
-			});
-		} else {
-			displaySearchResults([]); // Si no hay consulta, mostrar resultados vacíos
-		}
-	};
-	
 	// Función para mostrar los resultados de búsqueda
 	function displaySearchResults(posts) {
 		const resultsContainer = $('#search-results');
@@ -199,7 +176,7 @@ if (document.readyState === 'loading') {
 				resultsContainer.append(topicElement);
 			});
 		} else {
-			resultsContainer.append('<div>No se encontraron resultados.</div>');
+			resultsContainer.append('<div>No results found.</div>');
 		}
 	}
 

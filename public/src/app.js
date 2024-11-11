@@ -131,8 +131,8 @@ if (document.readyState === 'loading') {
 		
 		// Manejo del formulario de búsqueda
 		$('body').on('submit', '#search-form', function(e) {
-			e.preventDefault(); // Evitar el envío del formulario
-			app.searchTopics(); // Llamar a la función de búsqueda
+			e.preventDefault();
+			app.searchTopics();
 		});
 		
 	};
@@ -146,20 +146,20 @@ if (document.readyState === 'loading') {
 	};
 
 	app.searchTopics = function () {
-		const query = $('#search-input').val().toLowerCase(); // Obtener el valor del input de búsqueda y convertirlo a minúsculas
-		const categoryId = 5; // ID de la categoría específica
+		const query = $('#search-input').val().toLowerCase();
+		const categoryId = 5;
 	
 		if (query.length > 0) {
 			$.get(`/api/category/${categoryId}`, function (data) {
 				const topics = data.topics;
 				const matchingTopics = topics.filter(topic => topic.title.toLowerCase().includes(query));
-				displaySearchResults(matchingTopics); // Llamar a la función para mostrar los resultados
+				displaySearchResults(matchingTopics);
 			}).fail(function (error) {
 				console.error('Error al obtener los temas:', error);
-				displaySearchResults([]); // Si falla, mostrar resultados vacíos
+				displaySearchResults([]);
 			});
 		} else {
-			displaySearchResults([]); // Si no hay consulta, mostrar resultados vacíos
+			displaySearchResults([]);
 		}
 	};
 	

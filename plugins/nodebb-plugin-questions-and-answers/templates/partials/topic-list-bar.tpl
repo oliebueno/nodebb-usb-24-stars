@@ -36,7 +36,7 @@
 			</div>
 			<div style="display: flex; justify-content: center; align-items: center;">
 				{{{if isQA}}}
-					<form id="search-form" method="get">
+					<form id="search-form" method="get" style="margin-right: 30px;">
 						<input type="text" id="search-input" name="q" placeholder="Buscar..." />
 						<button type="submit">Buscar</button>
 					</form>

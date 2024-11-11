@@ -164,20 +164,55 @@ if (document.readyState === 'loading') {
 	};
 	
 	// Función para mostrar los resultados de búsqueda
-	function displaySearchResults(posts) {
+	function displaySearchResults(matchingTopics) {
 		const resultsContainer = $('#search-results');
 		resultsContainer.empty(); // Limpiar resultados anteriores
 	
-		if (posts.length > 0) {
-			posts.forEach(function(post) {
-				const topicElement = `<div>
-					<a href="/topic/${post.tid}">${post.title}</a>
-				</div>`;
-				resultsContainer.append(topicElement);
-			});
+		if (matchingTopics.length > 0) {
+			// Crear el HTML para mostrar los temas coincidentes
+			const html = matchingTopics.map(topic => `
+				<li component="category/topic" class="category-item hover-parent border-bottom py-3 py-lg-4 d-flex flex-column flex-lg-row align-items-start">
+					<div class="flex-grow-1 d-flex flex-wrap gap-1 position-relative">
+						<span component="topic/courseTag" class="badge bg-light text-primary border border-gray-300 ">#${topic.courseTag}</span>
+						<h3 component="topic/header"  class="title text -break fs-5 fw-semibold m-0 tracking-tight w-100">
+							<a class="text-reset" href="${config.relative_path}/topic/${topic.slug}">${topic.title}</a>				
+						</h3>
+
+							<div class="title text-break fs-5 fw-semibold m-0 tracking-tight w-100 {{{ if showSelect }}}me-4 me-lg-0{{{ end }}}">
+								<span component="topic/labels" class="d-flex gap-2">
+									<!-- Aquí puedes agregar más etiquetas si es necesario -->
+								</span>
+								<div class="lh-1 tags tag-list d-flex flex-wrap">
+									${topic.tags.map(tag => `<span class="badge border border-gray-300">${tag}</span>`).join('')}
+								</div>
+								<span class="text-muted">${new Date(topic.timestampISO).toLocaleDateString()}</span> <!-- Muestra la fecha -->
+							</div>
+						</div>
+					</div>
+				</li>
+			`).join('');
+	
+			resultsContainer.append(html); // Agregar el HTML al contenedor
 		} else {
 			resultsContainer.append('<div>No results found.</div>');
 		}
+	}
+
+	function renderTemplate(template, data) {
+		return template.replace(/{{{ each topics }}}/g, function() {
+			return data.topics.map(topic => `
+				<li component="category/topic" class="category-item hover-parent border-bottom py-3 py-lg-4 d-flex flex-column flex-lg-row align-items-start">
+					<link itemprop="url" content="/topic/${topic.slug}" />
+					<meta itemprop="name" content="${topic.title}" />
+					<h3 component="topic/header" class="title text-break fs-5 fw-semibold m-0 tracking-tight w-100">
+						<a class="text-reset" href="/topic/${topic.slug}">${topic.title}</a>
+					</h3>
+					<span component="topic/tags" class="lh-1 tag-list d-flex flex-wrap gap-1 ${!topic.tags.length ? 'hidden' : ''}"> 
+						${topic.tags.map(tag => `<span class="badge border border-gray-300">${tag}</span>`).join('')}
+					</span>
+				</li>
+			`).join('');
+		});
 	}
 
 	app.require = async function (modules) {

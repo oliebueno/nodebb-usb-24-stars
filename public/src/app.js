@@ -1,3 +1,5 @@
+import { displayUserQuestions } from './questionsDisplay.js';
+
 'use strict';
 
 import displayUserQuestions from './questionsDisplay';

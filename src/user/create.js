@@ -45,6 +45,7 @@ module.exports = function (User) {
 
 		let userData = {
 			username: data.username,
+			role: data.role,
 			userslug: data.userslug,
 			joindate: timestamp,
 			lastonline: timestamp,

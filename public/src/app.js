@@ -129,13 +129,12 @@ if (document.readyState === 'loading') {
 			messages.show();
 			appLoaded = true;
 		});
-		
+
 		// Manejo del formulario de búsqueda
-		$('body').on('submit', '#search-form', function(e) {
+		$('body').on('submit', '#search-form', function (e) {
 			e.preventDefault();
 			app.searchTopics();
 		});
-		
 	};
 
 	app.filterMyQuestions = function () {
@@ -149,7 +148,7 @@ if (document.readyState === 'loading') {
 	app.searchTopics = function () {
 		const query = $('#search-input').val().toLowerCase();
 		const categoryId = 5;
-	
+
 		if (query.length > 0) {
 			$.get(`/api/category/${categoryId}`, function (data) {
 				const topics = data.topics;

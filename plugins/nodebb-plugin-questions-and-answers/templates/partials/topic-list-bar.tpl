@@ -64,7 +64,7 @@
 		</div>
 	</nav>
 </div>
-<div id="search-results" >
+<div id="search-results">
 	<!-- Aquí se agregarán dinámicamente las preguntas asociadas a la búsqueda. -->
 </div>
 <div id="questions-container" style="

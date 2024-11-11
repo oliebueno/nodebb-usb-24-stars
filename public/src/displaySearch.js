@@ -1,7 +1,9 @@
 // Función para mostrar las preguntas o el mensaje correspondiente del filtro de búsqueda
 export default function displaySearchResults(matchingTopics) {
 	const resultsContainer = $('#search-results');
+    const resultsContainerFiltro = $('#questions-container');
 	resultsContainer.empty();
+    resultsContainerFiltro.empty();
 
 	if (matchingTopics.length > 0) {
 		const html = matchingTopics.map(topic => `

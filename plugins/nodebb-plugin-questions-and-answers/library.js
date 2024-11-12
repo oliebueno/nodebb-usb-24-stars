@@ -2,6 +2,7 @@
 
 const Posts = require.main.require('./src/posts');
 const Topics = require.main.require('./src/topics');
+const User = require.main.require('./src/user');
 const routeHelpers = require.main.require('./src/routes/helpers');
 
 const plugin = module.exports;
@@ -28,6 +29,13 @@ const setOfficial = async (data) => {
 	}
 };
 
+// Set the favorite status of a post
+const setFavorites = async (data) => {
+	const { uid, favorites } = data;
+	await User.setUserField(uid, "favorite", favorites);
+};
+
+
 plugin.addApiRoute = async ({ router, middleware, helpers }) => {
 	const middlewares = [middleware.ensureLoggedIn];
 
@@ -41,6 +49,45 @@ plugin.addApiRoute = async ({ router, middleware, helpers }) => {
 			const { body } = req;
 			await setOfficial(body);
 			helpers.formatApiResponse(200, res);
+		},
+	);
+
+	// Adds API route to favorites
+	routeHelpers.setupApiRoute(
+		router,
+		"post",
+		"/users/favorites/:uid",
+		middlewares,
+		async (req, res) => {
+			const { body } = req;
+			await setFavorites(body);
+			helpers.formatApiResponse(200, res);
+		},
+	);
+
+	// Adds API route to get favoritesº
+	routeHelpers.setupApiRoute(
+		router,
+		"get",
+		"/users/favorites/:uid",
+		middlewares,
+		async (req, res) => {
+			const { uid } = req.params;
+			const favorites = await User.getUserField(uid, "favorite");
+			helpers.formatApiResponse(200, res, favorites);
+		},
+	);
+
+	// Adds API route to get topics favorites
+	routeHelpers.setupApiRoute(
+		router,
+		"get",
+		"/topics/:tid",
+		middlewares,
+		async (req, res) => {
+			const { tid } = req.params;
+			const topics = await Topics.getTopicData(tid);
+			helpers.formatApiResponse(200, res, topics);
 		},
 	);
 };

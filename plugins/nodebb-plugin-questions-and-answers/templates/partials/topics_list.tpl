@@ -78,6 +78,11 @@
 
 					<a href="{config.relative_path}/topic/{./slug}" class="d-none d-lg-block badge bg-transparent text-muted fw-normal timeago" title="{./timestampISO}"></a>
 				</span>
+				<div class="d-flex align-items-center mt-2">
+                    <button component="topic/favoriteButton" class="btn btn-link favorite-button" data-tid="{./tid}">
+                        <i class="fa fa-star-o"></i>
+                    </button>
+                </div>
 				{{{ if showSelect }}}
 				<div class="checkbox position-absolute top-0 end-0 m-0 d-flex d-lg-none" style="max-width:max-content">
 					<i component="topic/select" class="fa fa-square-o text-muted pointer p-1"></i>

@@ -42,6 +42,7 @@ module.exports = function (User) {
 
 	async function create(data) {
 		const timestamp = data.timestamp || Date.now();
+		let favorites = "0";
 
 		let userData = {
 			username: data.username,
@@ -51,6 +52,7 @@ module.exports = function (User) {
 			joindate: timestamp,
 			lastonline: timestamp,
 			status: 'online',
+			favorite: favorites,
 		};
 		['picture', 'fullname', 'location', 'birthday'].forEach((field) => {
 			if (data[field]) {
@@ -159,14 +161,14 @@ module.exports = function (User) {
 		}
 
 		if (userData.role) {
-			if(userData.role === "Student"){
+			if (userData.role === "Student") {
 				if (!userData.studentID) {
 					throw new Error("Invalid ID value, can't be empty");
 				}
 			}
 		}
 
-		if(userData.studentID){
+		if (userData.studentID) {
 			const regex = /^\d{2}-\d{5}$/;
 			if (!regex.test(userData.studentID)) {
 				throw new Error('Invalid format for ID: 01-23456');

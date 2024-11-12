@@ -77,6 +77,19 @@ plugin.addApiRoute = async ({ router, middleware, helpers }) => {
 			helpers.formatApiResponse(200, res, favorites);
 		},
 	);
+
+	// Adds API route to get topics favorites
+	routeHelpers.setupApiRoute(
+		router,
+		"get",
+		"/topics/:tid",
+		middlewares,
+		async (req, res) => {
+			const { tid } = req.params;
+			const topics = await Topics.getTopicData(tid);
+			helpers.formatApiResponse(200, res, topics);
+		},
+	);
 };
 
 plugin.addUserRole = async ({ uids, whitelist }) => {

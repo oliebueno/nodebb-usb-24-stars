@@ -82,7 +82,6 @@ $(document).ready(function () {
 		}).join('');
 
 		$topicsContainer.append(topicsHtml);
-		console.log("Tópicos renderizados:", topics);
 	}
 
 	$(document).on('click', '#questions-and-answers-tab', function () {

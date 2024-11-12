@@ -259,7 +259,7 @@ module.exports = function (middleware) {
 		res.locals.config = res.locals.config || {};
 
 		const results = await utils.promiseParallel({
-			userData: user.getUserFields(req.uid, ['username', 'userslug', 'email', 'picture', 'email:confirmed', 'role', 'studentID']),
+			userData: user.getUserFields(req.uid, ['username', 'userslug', 'email', 'picture', 'email:confirmed']),
 			scripts: getAdminScripts(),
 			custom_header: plugins.hooks.fire('filter:admin.header.build', custom_header),
 			configs: meta.configs.list(),

@@ -6,7 +6,11 @@
 		{
 			"hook": "static:api.routes",
 			"method": "addApiRoute"
-		}
+		},
+    {
+      "hook": "filter:user.whitelistFields",
+      "method": "addUserRole"
+    }
 	],
 	"scripts": [
 		"./static/lib/officialAnswer.js",

@@ -7,10 +7,14 @@
 			"hook": "static:api.routes",
 			"method": "addApiRoute"
 		},
-    {
-      "hook": "filter:user.whitelistFields",
-      "method": "addUserRole"
-    }
+		{
+			"hook": "filter:user.whitelistFields",
+			"method": "addUserRole"
+		},
+		{
+			"hook": "filter:user.whitelistFields",
+			"method": "addUserStudentID"
+		}
 	],
 	"scripts": [
 		"./static/lib/officialAnswer.js",

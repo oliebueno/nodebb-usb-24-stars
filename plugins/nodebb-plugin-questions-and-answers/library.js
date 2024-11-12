@@ -50,3 +50,9 @@ plugin.addUserRole = async ({ uids, whitelist }) => {
 
 	return { uids, whitelist };
 };
+
+plugin.addUserStudentID = async ({ uids, whitelist }) => {
+	whitelist.push('studentID');
+
+	return { uids, whitelist };
+};

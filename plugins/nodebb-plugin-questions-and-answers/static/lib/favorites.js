@@ -1,5 +1,6 @@
 const toggleFavorite = async (button, tid) => {
 
+
 	const userFavoritesResponse = await api.get(`/plugins/users/favorites/${app.user.uid}`);
 	let userFavorites = userFavoritesResponse.split(',').map(Number).filter(num => !isNaN(num));
 	const isFavorited = userFavorites.includes(tid);

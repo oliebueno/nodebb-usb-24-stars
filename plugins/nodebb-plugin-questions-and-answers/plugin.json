@@ -10,6 +10,10 @@
 		{
 			"hook": "filter:user.whitelistFields",
 			"method": "addUserRole"
+		},
+		{
+			"hook": "filter:user.whitelistFields",
+			"method": "addUserStudentID"
 		}
 	],
 	"scripts": [

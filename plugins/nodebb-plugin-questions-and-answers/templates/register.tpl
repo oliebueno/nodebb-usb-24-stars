@@ -44,12 +44,12 @@
 								const studentID = document.getElementById("studentID");
 
 								if (roleSelect.value === "Student") {
-								studentIDLabel.style.display = "block";
-								studentID.style.display = "block";
-								studentID.type = "text";
-								} else {
-								studentID.style.display = "none";
-								studentIDLabel.style.display = "none"; 
+                                    studentIDLabel.style.display = "block";
+                                    studentID.style.display = "block";
+                                    studentID.type = "text";
+                                } else {
+                                    studentID.style.display = "none";
+                                    studentIDLabel.style.display = "none"; 
 								}
 							});
 						</script>

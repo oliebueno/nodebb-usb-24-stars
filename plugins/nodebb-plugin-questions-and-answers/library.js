@@ -50,3 +50,4 @@ plugin.addUserRole = async ({ uids, whitelist }) => {
 
 	return { uids, whitelist };
 };
+

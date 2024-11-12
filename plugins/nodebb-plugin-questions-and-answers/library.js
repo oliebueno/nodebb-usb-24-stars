@@ -44,3 +44,9 @@ plugin.addApiRoute = async ({ router, middleware, helpers }) => {
 		},
 	);
 };
+
+plugin.addUserRole = async ({ uids, whitelist }) => {
+	whitelist.push('role');
+
+	return { uids, whitelist };
+}

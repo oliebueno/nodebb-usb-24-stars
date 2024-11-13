@@ -1,0 +1,50 @@
+post:
+  tags:
+    - topics
+  summary: set a topic as favourite
+  description: This operation sets a topic as favourite for a user
+  parameters:
+    - in: path
+      name: uid
+      schema:
+        type: string
+      required: true
+      description: a valid user id
+      example: 2
+  requestBody:
+    required: true
+    content:
+      application/json:
+        schema:
+          type: array
+          items:
+            type: integer
+  responses:
+    '200':
+      description: Topic successfully set as favourite
+    '400':
+      description: Invalid request
+    '404':
+      description: User not found
+
+get:
+  tags:
+    - topics
+  summary: get the favourite topics of a user
+  parameters:
+    - in: path
+      name: uid
+      schema:
+        type: integer
+      required: true
+      description: uid of the user to check
+      example: 3
+  responses:
+    '200':
+      description: successfully retrieved user profile
+      content:
+        application/json:
+          schema:
+            type: array
+            items: integer
+

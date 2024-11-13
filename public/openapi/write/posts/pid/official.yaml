@@ -11,10 +11,4 @@ post:
       required: true
       description: a valid post id
       example: 2
-  requestBody:
-    required: true
-    content:
-      application/json:
-        schema:
-          type: object
 

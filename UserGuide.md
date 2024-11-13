@@ -50,21 +50,12 @@ Después de completar la instalación de NodeBB, es importante configurar los pl
 
 - [nodebb-plugin-composer-default]
 
-### Cómo Activar y Desactivar Plugins
+### Activar y desactivar plugins
+Ejecutar:
 
-Para activar o desactivar plugins en NodeBB, puedes utilizar los siguientes comandos en la línea de comandos:
-
-#### Para activar un plugin específico:
-
-    ```sh
-    ./nodebb activate name-plugin
-    ```
-
-#### Para desactivar un plugin específico:
-
-    ```sh
-    ./nodebb reset -p name-plugin
-    ```
+```sh
+./nodebb activate questions-and-answers && ./nodebb activate composer-question && ./nodebb reset -p composer-default 
+```
 
 ## Pruebas Automáticas
 

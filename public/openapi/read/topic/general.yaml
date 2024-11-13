@@ -430,4 +430,8 @@ get:
               - $ref: ../../components/schemas/Pagination.yaml#/Pagination
               - $ref: ../../components/schemas/Breadcrumbs.yaml#/Breadcrumbs
               - $ref: ../../components/schemas/CommonProps.yaml#/CommonProps
+    "400":
+      description: Invalid request
+    "404":
+      description: Post not found
 

@@ -20,23 +20,23 @@ Para instalar NodeBB, primero necesitas instalar Node.js. A continuación, se de
 ### Instalando Node.js
 Node.js está disponible desde el repositorio de distribuciones binarias de NodeSource para Ubuntu. Comienza agregando este repositorio al índice de apt:
 
-    ```sh
+```sh
     curl -sL https://deb.nodesource.com/setup_lts.x | sudo -E bash -
-    ```
+```
 
 Luego, actualiza los paquetes apt e instala Node.js:
 
-    ```sh
+ ```sh
     sudo apt-get update
     sudo apt-get install -y nodejs
-    ```
+ ```
 
 Verifica la instalación de Node.js y npm. Debes tener instalada la versión LTS de Node.js y la versión 9 o más reciente de npm:
 
-    ```sh
+```sh
     node -v     # idealmente v18.x o v20.x
     npm -v      # idealmente 10.0 o superior
-    ```
+```
 
 ## Configuración de Plugins en NodeBB
 Después de completar la instalación de NodeBB, es importante configurar los plugins adecuados para asegurar el correcto funcionamiento del sistema. A continuación, se detallan los plugins que debes activar y desactivar:

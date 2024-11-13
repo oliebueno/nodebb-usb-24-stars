@@ -149,3 +149,12 @@ Se añadieron pruebas en `tests/officialAnswers.js`. Estas pruebas contienen:
 
 Este conjunto de pruebas son suficientes para verificar el conjunto de características que rodean el marcado de respuestas como oficiales. Se encargan de añadir nuevas respuestas, de probar la nueva ruta añadida a la API y de verificar que en la base de datos la respuesta tiene el estatus oficial como es debido. Del mismo modo, para el envío de notificaciones luego del marcado de una respuesta como oficial, revisa que todos los usuarios que estaban siguiendo el tópico al que pertenece la respuesta han sido notificados correctamente al buscar en la base de datos las notificaciones pendientes de esos usuarios.
 
+#### Preguntas con su etiqueta de curso
+
+Se añadieron pruebas en `tests/questions.js`. Estas pruebas contienen:
+- Creación exitosa de preguntas con título, contenido y etiqueta de curso.
+- Validación de que el título no pueda estar vacío y debe tener al menos 3 caracteres.
+- Validación de que el contenido no puede estar vacío y debe tener al menos 8 caracteres.
+- Obtención correcta de la etiqueta de curso de una pregunta.
+
+Las pruebas son suficientes porque cubren los casos de uso principales de la funcionalidad de pregunta con etiqueta de curso. Al utilizar los tópicos como preguntas, se aprovecha que NodeBB ya cuenta con pruebas para verificar cualquier operación relacionada con tópicos (`tests/topics.js`), lo que elimina la necesidad de añadir pruebas adicionales para funciones como editar y eliminar. Además, estas pruebas verifican que las preguntas se crean correctamente con los datos necesarios, aseguran que las validaciones de título y contenido funcionan como se espera, y confirman que las etiquetas de curso se manejan adecuadamente en las preguntas.

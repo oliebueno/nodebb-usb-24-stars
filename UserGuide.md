@@ -158,3 +158,14 @@ Se añadieron pruebas en `tests/questions.js`. Estas pruebas contienen:
 - Obtención correcta de la etiqueta de curso de una pregunta.
 
 Las pruebas son suficientes porque cubren los casos de uso principales de la funcionalidad de pregunta con etiqueta de curso. Al utilizar los tópicos como preguntas, se aprovecha que NodeBB ya cuenta con pruebas para verificar cualquier operación relacionada con tópicos (`tests/topics.js`), lo que elimina la necesidad de añadir pruebas adicionales para funciones como editar y eliminar. Además, estas pruebas verifican que las preguntas se crean correctamente con los datos necesarios, aseguran que las validaciones de título y contenido funcionan como se espera, y confirman que las etiquetas de curso se manejan adecuadamente en las preguntas.
+
+#### Registro de usuario (nuevos campos)
+
+Se añadieron pruebas en `tests/user.js`. Estas pruebas contienen:
+- Verificación del funcionamiento del error al introducir un studentID vacío.
+- Verificación del funcionamiento del error al introducir un studentID invalido (que incumpla el formato establecido).
+
+Se modificaron las siguientes pruebas en `tests/user.js`:
+- Creación correcta de usuario: Se agregaron los campos "role" y "studentID".
+ 
+Dichas pruebas son suficientes para probar las características agregadas debido a que permiten validar el correcto funcionamiento de los atributos agregados en conjunto con las limitaciones o validaciones requeridas. Además, permiten corroborar que la adición de dichos atributos no perjudican el funcionamiento general de la aplicación.

@@ -58,4 +58,50 @@ Ejecutar:
 ```
 
 ## Pruebas Automáticas
+En primer lugar, además de añadir en la configuración de NodeBB en el archivo `config.json` la información del servidor de pruebas, también se deben añadir los plugins para la ejecución de las mismas:
+```json
+    "test_plugins": [
+      "nodebb-plugin-questions-and-answers",
+      "nodebb-plugin-composer-questions"
+    ],
+```
+
+El archivo `config.json` se verá algo como:
+```json
+{
+    "url": "http://localhost:4567",
+    "secret": "your-secret",
+    "database": "redis",
+    "redis": {
+        "host": "127.0.0.1",
+        "port": "6379",
+        "password": "",
+        "database": "0"
+    },
+    "test_database": {
+      "host": "127.0.0.1",
+      "port": "6379",
+      "password": "",
+      "database": "1"
+    },
+    "test_plugins": [
+      "nodebb-plugin-questions-and-answers",
+      "nodebb-plugin-composer-questions"
+    ],
+    "port": "4567"
+}
+```
+
+### Pruebas añadidas
+
+A continuación se detallan todas las pruebas automáticas añadidas:
+
+#### Respuestas oficiales
+
+Se añadieron pruebas en `tests/officialAnswers.js`. Estas pruebas contienen:
+- Prueba para marcar una respuesta como oficial.
+- Prueba para desmarcar una respuesta como oficial.
+- Prueba para verificar el envío de notificaciones a todos los usuarios que están siguiendo un tópico.
+
+Este conjunto de pruebas son suficientes para verificar el conjunto de características que rodean el marcado de respuestas como oficiales. Se encargan de añadir nuevas respuestas, de probar la nueva ruta añadida a la API y de verificar que en la base de datos la respuesta tiene el estatus oficial como es debido. Del mismo modo, para el envío de notificaciones luego del marcado de una respuesta como oficial, revisa que todos los usuarios que estaban siguiendo el tópico al que pertenece la respuesta han sido notificados correctamente al buscar en la base de datos las notificaciones pendientes de esos usuarios.
 

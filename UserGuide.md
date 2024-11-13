@@ -57,6 +57,50 @@ Ejecutar:
 ./nodebb activate questions-and-answers && ./nodebb activate composer-question && ./nodebb reset -p composer-default 
 ```
 
+Luego de ejecutar lo anterior, si se ejecuta `./nodebb plugins` debería mostrar algo como:
+```sh
+Active plugins:
+        * nodebb-plugin-2factor@7.5.3 (installed, disabled)
+        * nodebb-plugin-composer-default@10.2.36 (installed, disabled)
+        * nodebb-plugin-composer-question@10.2.36 (installed, enabled)
+        * nodebb-plugin-dbsearch@6.2.5 (installed, disabled)
+        * nodebb-plugin-emoji@5.1.15 (installed, enabled)
+        * nodebb-plugin-emoji-android@4.0.0 (installed, enabled)
+        * nodebb-plugin-markdown@12.2.6 (installed, enabled)
+        * nodebb-plugin-mentions@4.4.3 (installed, enabled)
+        * nodebb-plugin-ntfy@1.7.4 (installed, disabled)
+        * nodebb-plugin-questions-and-answers@1.0.0 (installed, enabled)
+        * nodebb-plugin-spam-be-gone@2.2.2 (installed, disabled)
+        * nodebb-rewards-essentials@1.0.0 (installed, enabled)
+        * nodebb-theme-harmony@1.2.63 (installed, enabled)
+        * nodebb-theme-lavender@7.1.8 (installed, disabled)
+        * nodebb-theme-peace@2.2.6 (installed, disabled)
+        * nodebb-theme-persona@13.3.25 (installed, disabled)
+        * nodebb-widget-essentials@7.0.18 (installed, enabled)
+```
+Donde debe estar lo siguiente:
+```sh
+Active plugins:
+        * nodebb-plugin-composer-default@10.2.36 (installed, disabled)
+        * nodebb-plugin-composer-question@10.2.36 (installed, enabled)
+        * nodebb-plugin-questions-and-answers@1.0.0 (installed, enabled)
+```
+
+## Ejecución del código
+
+Una vez que los plugins estén correctamente instalados y habilitados, se debe reconstruir NodeBB:
+
+```sh
+./nodebb build
+```
+
+Y luego correr NodeBB con:
+```sh
+./nodebb start
+```
+
+Finalmente, el sitio debería estar disponible con todas las características añadidas descritas en las historias de usuario.
+
 ## Pruebas Automáticas
 En primer lugar, además de añadir en la configuración de NodeBB en el archivo `config.json` la información del servidor de pruebas, también se deben añadir los plugins para la ejecución de las mismas:
 ```json

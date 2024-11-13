@@ -42,12 +42,12 @@ module.exports = function (User) {
 
 	async function create(data) {
 		const timestamp = data.timestamp || Date.now();
-		let favorites = "0";
+		const favorites = '0';
 
 		let userData = {
 			username: data.username,
-			role: data.role && "Professor",
-			studentID: data.studentID && "",
+			role: data.role && 'Professor',
+			studentID: data.studentID && '',
 			userslug: data.userslug,
 			joindate: timestamp,
 			lastonline: timestamp,
@@ -161,9 +161,9 @@ module.exports = function (User) {
 		}
 
 		if (userData.role) {
-			if (userData.role === "Student") {
+			if (userData.role === 'Student') {
 				if (!userData.studentID) {
-					throw new Error("Invalid ID value, can't be empty");
+					throw new Error('Invalid ID value, can\'t be empty');
 				}
 			}
 		}

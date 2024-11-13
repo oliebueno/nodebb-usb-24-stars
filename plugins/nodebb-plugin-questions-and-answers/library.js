@@ -32,7 +32,7 @@ const setOfficial = async (data) => {
 // Set the favorite status of a post
 const setFavorites = async (data) => {
 	const { uid, favorites } = data;
-	await User.setUserField(uid, "favorite", favorites);
+	await User.setUserField(uid, 'favorite', favorites);
 };
 
 
@@ -55,8 +55,8 @@ plugin.addApiRoute = async ({ router, middleware, helpers }) => {
 	// Adds API route to favorites
 	routeHelpers.setupApiRoute(
 		router,
-		"post",
-		"/users/favorites/:uid",
+		'post',
+		'/users/favorites/:uid',
 		middlewares,
 		async (req, res) => {
 			const { body } = req;
@@ -68,12 +68,12 @@ plugin.addApiRoute = async ({ router, middleware, helpers }) => {
 	// Adds API route to get favoritesº
 	routeHelpers.setupApiRoute(
 		router,
-		"get",
-		"/users/favorites/:uid",
+		'get',
+		'/users/favorites/:uid',
 		middlewares,
 		async (req, res) => {
 			const { uid } = req.params;
-			const favorites = await User.getUserField(uid, "favorite");
+			const favorites = await User.getUserField(uid, 'favorite');
 			helpers.formatApiResponse(200, res, favorites);
 		},
 	);
@@ -81,8 +81,8 @@ plugin.addApiRoute = async ({ router, middleware, helpers }) => {
 	// Adds API route to get topics favorites
 	routeHelpers.setupApiRoute(
 		router,
-		"get",
-		"/topics/:tid",
+		'get',
+		'/topics/:tid',
 		middlewares,
 		async (req, res) => {
 			const { tid } = req.params;

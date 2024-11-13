@@ -66,7 +66,7 @@ describe('User', () => {
 			email: 'john@example.com',
 			callback: undefined,
 			role: 'Professor',
-			studentID: '01-23456'
+			studentID: '01-23456',
 		};
 	});
 
@@ -74,7 +74,12 @@ describe('User', () => {
 
 	describe('.create(), when created', () => {
 		it('should be created properly', async () => {
-			testUid = await User.create({ username: userData.username, password: userData.password, role: userData.role, studentID: userData.studentID });
+			testUid = await User.create({
+				username: userData.username,
+				password: userData.password,
+				role: userData.role,
+				studentID: userData.studentID,
+			});
 			assert.ok(testUid);
 
 			await User.setUserField(testUid, 'email', userData.email);

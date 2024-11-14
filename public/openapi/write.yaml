@@ -266,4 +266,6 @@ paths:
     $ref: 'write/posts/pid/official.yaml'
   /plugins/users/favorites/{uid}:
     $ref: 'write/users/uid/favourites.yaml'
+  /plugins/topics/{tid}:
+    $ref: 'write/topics/tid/general.yaml'
 

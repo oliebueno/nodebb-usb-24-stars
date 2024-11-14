@@ -190,8 +190,6 @@ paths:
     $ref: 'read/topic/topic_id.yaml'
   "/api/v3/plugins/topics/{tid}":
     $ref: 'read/topic/general.yaml'
-  "/api/v3/plugins/users/favorites/{uid}":
-    $ref: 'read/user/uid/favourites.yaml'
   /api/recent:
     $ref: 'read/recent.yaml'
   "/api/recent/posts/{term}":

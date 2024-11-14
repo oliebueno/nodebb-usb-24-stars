@@ -1,3 +1,40 @@
+get:
+  tags:
+    - topics
+  summary: get the favourite topics of a user
+  parameters:
+    - in: path
+      name: uid
+      schema:
+        type: integer
+      required: true
+      description: uid of the user to check
+      example: 3
+  responses:
+    '200':
+      description: successfully retrieved user profile
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              status:
+                type: object
+                properties:
+                  code:
+                    type: string
+                    example: "ok"
+                  message:
+                    type: string
+                    example: "OK"
+              response:
+                oneOf:
+                  - type: object
+                    properties:
+                      favourites:
+                        type: string
+                  - type: string
+
 post:
   tags:
     - topics

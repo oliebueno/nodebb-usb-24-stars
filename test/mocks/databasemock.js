@@ -255,6 +255,8 @@ async function enableDefaultPlugins() {
 		'nodebb-plugin-dbsearch',
 		'nodebb-widget-essentials',
 		'nodebb-plugin-composer-default',
+		'nodebb-plugin-composer-question',
+		'nodebb-plugin-questions-and-answers',
 	].concat(testPlugins);
 
 	winston.info('[install/enableDefaultPlugins] activating default plugins', defaultEnabled);

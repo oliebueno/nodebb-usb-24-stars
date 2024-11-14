@@ -6,7 +6,8 @@ const toggleOfficial = (buttons, officialStatus) => {
 	buttons.each(async function () {
 		const button = $(this); // eslint-disable-line no-undef
 		const pid = button.parents('[data-pid]').data('pid');
-		const editedData = { pid, official: officialStatus };
+		const postData = await api.get(`/posts/${pid}`);
+		const editedData = { ...postData, official: officialStatus };
 		button.on('click', () => {
 			api.post(`/plugins/posts/official/${pid}`, editedData, (err) => {
 				if (err) {

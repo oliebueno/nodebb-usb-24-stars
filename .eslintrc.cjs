@@ -66,7 +66,11 @@ function find_compiled_js() {
                 }
             },
             {
-              files: ["./plugins/nodebb-plugin-questions-and-answers/static/lib/officialAnswer.js"],
+              files: [
+                "./plugins/nodebb-plugin-questions-and-answers/static/lib/officialAnswer.js",
+                "./plugins/nodebb-plugin-questions-and-answers/static/lib/favorites.js",
+                "./plugins/nodebb-plugin-questions-and-answers/static/lib/filterFavorites.js"
+              ],
               parserOptions: {
                 sourceType: "module"
               }

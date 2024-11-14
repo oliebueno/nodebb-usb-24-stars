@@ -103,8 +103,10 @@
 		<!-- IMPORT partials/topic/reactions.tpl -->
 		<a component="post/reply" href="#" class="btn-ghost-sm {{{ if !privileges.topics:reply }}}hidden{{{ end }}}" title="[[topic:reply]]"><i class="fa fa-fw fa-reply text-primary"></i></a>
 		<a component="post/quote" href="#" class="btn-ghost-sm {{{ if !privileges.topics:reply }}}hidden{{{ end }}}" title="[[topic:quote]]"><i class="fa fa-fw fa-quote-right text-primary"></i></a>
-		<a component="post/markOfficial" href="#" class="btn-ghost-sm {{{ if ((posts.index == 0) || (posts.official == "true")) }}}hidden{{{ end }}}" title="Mark as official answer"><i class="fa fa-fw fa-circle-check text-primary"></i></a>
-		<a component="post/unmarkOfficial" href="#" class="btn-ghost-sm {{{ if ((posts.index == 0) || (posts.official != "true")) }}}hidden{{{ end }}}" title="Unmark as official answer"><i class="fa fa-fw fa-circle-xmark text-danger"></i></a>
+    {{{ if (loggedInUser.role == "Professor") }}}
+      <a component="post/markOfficial" href="#" class="btn-ghost-sm {{{ if ((posts.index == 0) || (posts.official == "true")) }}}hidden{{{ end }}}" title="Mark as official answer"><i class="fa fa-fw fa-circle-check text-primary"></i></a>
+      <a component="post/unmarkOfficial" href="#" class="btn-ghost-sm {{{ if ((posts.index == 0) || (posts.official != "true")) }}}hidden{{{ end }}}" title="Unmark as official answer"><i class="fa fa-fw fa-circle-xmark text-danger"></i></a>
+    {{{ end }}}
 
 		{{{ if !reputation:disabled }}}
 		<div class="d-flex votes align-items-center">

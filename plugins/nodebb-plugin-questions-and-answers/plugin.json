@@ -10,7 +10,12 @@
 	],
 	"scripts": [
 		"./static/lib/officialAnswer.js",
+		"./static/lib/favorites.js",
 		"./public/js/client.js",
+		"./static/lib/filterFavorites.js"
+	],
+	"scss": [
+		"./public/scss/favorites.scss"
 	],
 	"templates": "./templates"
 }

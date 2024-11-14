@@ -264,6 +264,6 @@ paths:
     $ref: 'write/files/folder.yaml'
   /plugins/posts/official/{pid}:
     $ref: 'write/posts/pid/official.yaml'
-  /plugins/users/favorites/{pid}:
+  /plugins/users/favorites/{uid}:
     $ref: 'write/users/uid/favourites.yaml'
 
